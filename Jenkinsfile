@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    // MANDATORY for the GitHub webhook trigger to work
+    //MANDATORY for the GitHub webhook trigger to work
     triggers {
         githubPush()
     }
@@ -36,7 +36,7 @@ pipeline {
                     script {
                         // 'sonar-scanner' must match the name in Manage Jenkins > Global Tool Configuration
                         def scannerHome = tool 'sonar-scanner'
-                        
+
                         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=techie-horizon -Dsonar.projectName=Techie-Horizon -Dsonar.projectVersion=1.0 -Dsonar.sources=."
                     }
                 }
@@ -87,7 +87,7 @@ pipeline {
             )
             // Optional: Trigger the next project if needed (uncomment the line below)
             // build job: 'hiringapp-Build_push_update_manifest', wait: false
-            
+
             echo 'TECHIE HORIZON NEXUS UPLOAD SUCCESSFUL'
         }
         failure {
