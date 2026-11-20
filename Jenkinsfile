@@ -1,11 +1,21 @@
 pipeline {
     agent any
     
+    // THIS LINE IS MANDATORY for the "GitHub hook trigger" to work
     triggers {
-        githubPush() // This line is required for the hook to trigger the job
+        githubPush()
     }
     
     stages {
-        // ... your stages
+        stage('Checkout') {
+            steps {
+                echo 'Code checked out successfully!'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building...'
+            }
+        }
     }
 }
