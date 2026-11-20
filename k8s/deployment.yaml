@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,7 +17,7 @@ spec:
     spec:
       containers:
         - name: techie-horizon
-          image: sunith18/techie-horizon:1
+          image: nayeemluvs/techie-horizon:1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
