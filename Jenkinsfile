@@ -29,7 +29,7 @@ pipeline {
                     // Now you run your scanner command.
 		    script {
                         def mvnHome = tool 'Maven-3.10.1' // Ensure this matches your Global Tool name
-                        sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectKey=techie-horizon -Dsonar.projectName='Techie Horizon'"
+		        sh "${mvnHome}/bin/mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=techie-horizon -Dsonar.projectName='Techie Horizon'"
                     }		    
                 }
             }
