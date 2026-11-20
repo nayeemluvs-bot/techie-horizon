@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    // This line is MANDATORY for the "GitHub hook trigger" to work
+    // MANDATORY for the GitHub webhook trigger to work
     triggers {
         githubPush()
     }
@@ -12,27 +12,28 @@ pipeline {
                 echo 'Code checked out successfully!'
             }
         }
-        
+
         stage('Build') {
             steps {
                 echo 'Building...'
             }
         }
-        
+
         // --- SONARQUBE STAGE ---
         stage('SonarQube Analysis') {
             steps {
-                // 'SonarQube' must exactly match the Name you gave in
-                // Manage Jenkins -> Configure System -> SonarQube servers
+                // 'techie-sonar' must match the name in Manage Jenkins > Configure System
                 withSonarQubeEnv('techie-sonar') {
-                    // Inside this block, the SONAR_TOKEN is automatically injected.
-                    // Now you run your scanner command.
-		    script {
-                        def mvnHome = tool 'Maven-3.10.1' // Ensure this matches your Global Tool name
-		        sh "${mvnHome}/bin/mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=techie-horizon -Dsonar.projectName='Techie Horizon'"
-                    }		    
+                    script {
+                        // 'sonar-scanner' must match the name in Manage Jenkins > Global Tool Configuration
+                        def scannerHome = tool 'sonar-scanner'
+                        
+                        // Added sonar.projectVersion and removed the single quotes around the project name 
+                        // to prevent shell parsing issues
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=techie-horizon -Dsonar.projectName=Techie-Horizon -Dsonar.projectVersion=1.0 -Dsonar.sources=."
+                    }
                 }
             }
         }
-    } // <--- THIS closing brace was moved down to close the "stages" block
-} // <--- This closes the "pipeline" block
+    }
+}
