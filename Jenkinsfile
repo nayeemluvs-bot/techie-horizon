@@ -1,7 +1,7 @@
 pipeline {
     agent any
     
-    // THIS LINE IS MANDATORY for the "GitHub hook trigger" to work
+    //  Test THIS LINE IS MANDATORY for the "GitHub hook trigger" to work
     triggers {
         githubPush()
     }
