@@ -27,7 +27,8 @@ pipeline {
                 withSonarQubeEnv('techie-sonar') {
                     // Inside this block, the SONAR_TOKEN is automatically injected.
                     // Now you run your scanner command.
-                    sh 'mvn sonar:sonar -Dsonar.projectKey=techie-horizon -Dsonar.projectName="Techie Horizon"'
+		    def mvnHome = tool 'Maven-3.10.1' // Use the name you gave in Global Tools
+		    sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectKey=techie-horizon -Dsonar.projectName='Techie Horizon'"	
                 }
             }
         }
