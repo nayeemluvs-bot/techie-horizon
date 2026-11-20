@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    //  MANDATORY for the GitHub webhook trigger to work
+    //MANDATORY for the GitHub webhook trigger to work
     triggers {
         githubPush()
     }
@@ -27,8 +27,8 @@ pipeline {
                     script {
                         // 'sonar-scanner' must match the name in Manage Jenkins > Global Tool Configuration
                         def scannerHome = tool 'sonar-scanner'
-                        
-                        // Added sonar.projectVersion and removed the single quotes around the project name 
+
+                        // Added sonar.projectVersion and removed the single quotes around the project name
                         // to prevent shell parsing issues
                         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=techie-horizon -Dsonar.projectName=Techie-Horizon -Dsonar.projectVersion=1.0 -Dsonar.sources=."
                     }
