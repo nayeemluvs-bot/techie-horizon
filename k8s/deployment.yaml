@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: techie-horizon
-          image: nayeemluvs/techie-horizon:2
+          image: nayeemluvs/techie-horizon:3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
